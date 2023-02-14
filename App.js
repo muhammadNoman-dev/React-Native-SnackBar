@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, View } from "react-native";
+import Snackbar from "./Snackbar";
+import { useState } from "react";
 
 export default function App() {
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.snackbar}>
+      <View style={styles.snackbar}>
+        <Snackbar
+          visible={openSnackBar}
+          position="top"
+          title={"title hu"}
+          message="Message huu na"
+        />
+        <Button
+          title="press me"
+          onPress={() => setOpenSnackBar(!openSnackBar)}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  snackbar: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignContent: "center",
+    justifyContent: "center",
   },
 });
