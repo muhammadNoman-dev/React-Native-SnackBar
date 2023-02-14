@@ -11,8 +11,8 @@ export default function App() {
         <Snackbar
           visible={openSnackBar}
           position="top"
-          title={"title hu"}
-          message="Message huu na Message huu na Message huu na Message huu na Message huu na"
+          title={"Congratulations"}
+          message="You have successfully read this message. Please continue working!"
           contype={"success"}
         />
         <Button

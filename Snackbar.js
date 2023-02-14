@@ -33,6 +33,30 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
     }).start();
   };
 
+  const getTintColor = () => {
+    if (contype === "warning") return "#ad5e03";
+    else if (contype === "failure") return "#c70806";
+    else if (contype === "success") return "#038a32";
+    else if (contype === "help") return "#054fa8";
+    return "#c70806";
+  };
+
+  const getBackgroundColor = () => {
+    if (contype === "warning") return "#e69840";
+    else if (contype === "failure") return "#f75452";
+    else if (contype === "success") return "#30db6c";
+    else if (contype === "help") return "#3987e6";
+    return "#f75452";
+  };
+
+  const getIcon = () => {
+    if (contype === "warning") return "warning";
+    else if (contype === "failure") return "close";
+    else if (contype === "success") return "check";
+    else if (contype === "help") return "question";
+    return "close";
+  };
+
   useEffect(() => {
     visible ? showSnackbar() : hideSnackbar();
   }, [visible]);
@@ -53,40 +77,21 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
         style={[
           styles.container,
           {
-            backgroundColor:
-              contype === "warning"
-                ? "#e69840"
-                : contype === "failure"
-                ? "#f75452"
-                : contype === "success"
-                ? "#30db6c"
-                : contype === "help"
-                ? "#3987e6"
-                : "brown",
+            backgroundColor: getBackgroundColor(),
           },
         ]}
       >
-        <View style={{ width: "10%" }}>
+        <View style={{ flex: 0.2 }}>
           <View style={styles.containerLeft}>
             <AntDesign
               style={{ zIndex: 1 }}
-              name="question"
-              size={25}
+              name={getIcon()}
+              size={20}
               color="white"
             />
             <Image
               resizeMode={"contain"}
-              tintColor={
-                contype === "warning"
-                  ? "#ad5e03"
-                  : contype === "failure"
-                  ? "#c70806"
-                  : contype === "success"
-                  ? "#038a32"
-                  : contype === "help"
-                  ? "#054fa8"
-                  : "brown"
-              }
+              tintColor={getTintColor()}
               style={{
                 position: "absolute",
                 height: 45,
@@ -97,17 +102,7 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
         </View>
         <Image
           resizeMode={"contain"}
-          tintColor={
-            contype === "warning"
-              ? "#ad5e03"
-              : contype === "failure"
-              ? "#c70806"
-              : contype === "success"
-              ? "#038a32"
-              : contype === "help"
-              ? "#054fa8"
-              : "brown"
-          }
+          tintColor={getTintColor()}
           style={{
             position: "absolute",
             bottom: 0,
@@ -119,9 +114,9 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
         />
         <View
           style={{
+            flex: 0.8,
             display: "flex",
             flexDirection: "column",
-            width: "65%",
           }}
         >
           <Text style={styles.title}>{title}</Text>
@@ -148,6 +143,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   message: {
+    fontSize: 12,
     color: "white",
   },
   containerLeft: {
