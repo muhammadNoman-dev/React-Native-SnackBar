@@ -13,7 +13,7 @@ export default function App() {
           position="top"
           title={"title hu"}
           message="Message huu na Message huu na Message huu na Message huu na Message huu na"
-          contype={"warn"}
+          contype={"success"}
         />
         <Button
           title="press me"

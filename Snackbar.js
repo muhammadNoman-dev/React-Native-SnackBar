@@ -52,7 +52,18 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
       <View
         style={[
           styles.container,
-          { backgroundColor: contype === "info" ? "yellow" : "green" },
+          {
+            backgroundColor:
+              contype === "warning"
+                ? "#e69840"
+                : contype === "failure"
+                ? "#f75452"
+                : contype === "success"
+                ? "#30db6c"
+                : contype === "help"
+                ? "#3987e6"
+                : "brown",
+          },
         ]}
       >
         <View style={{ width: "10%" }}>
@@ -65,7 +76,17 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
             />
             <Image
               resizeMode={"contain"}
-              tintColor="#86e84d"
+              tintColor={
+                contype === "warning"
+                  ? "#ad5e03"
+                  : contype === "failure"
+                  ? "#c70806"
+                  : contype === "success"
+                  ? "#038a32"
+                  : contype === "help"
+                  ? "#054fa8"
+                  : "brown"
+              }
               style={{
                 position: "absolute",
                 height: 45,
@@ -76,6 +97,17 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
         </View>
         <Image
           resizeMode={"contain"}
+          tintColor={
+            contype === "warning"
+              ? "#ad5e03"
+              : contype === "failure"
+              ? "#c70806"
+              : contype === "success"
+              ? "#038a32"
+              : contype === "help"
+              ? "#054fa8"
+              : "brown"
+          }
           style={{
             position: "absolute",
             bottom: 0,
