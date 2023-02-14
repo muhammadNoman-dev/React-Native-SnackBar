@@ -12,7 +12,8 @@ export default function App() {
           visible={openSnackBar}
           position="top"
           title={"title hu"}
-          message="Message huu na"
+          message="Message huu na Message huu na Message huu na Message huu na Message huu na"
+          contype={"warn"}
         />
         <Button
           title="press me"

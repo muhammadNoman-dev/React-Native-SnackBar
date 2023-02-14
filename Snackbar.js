@@ -3,10 +3,10 @@ import {
   Animated,
   Image,
   StyleSheet,
-  StatusBar,
   Text,
   View,
   Platform,
+  Easing,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Bubble from "./assets/bubbles.png";
@@ -15,11 +15,11 @@ import Back from "./assets/back.png";
 const Snackbar = ({ title, message, contype, position, visible }) => {
   const animatedValue = useRef(new Animated.Value(0));
 
-  console.log("platform", Platform);
-
   const showSnackbar = () => {
     Animated.timing(animatedValue.current, {
       toValue: 1,
+      duration: 500,
+      easing: Easing.in(Easing.ease),
       useNativeDriver: false,
     }).start();
   };
@@ -27,6 +27,8 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
   const hideSnackbar = () => {
     Animated.timing(animatedValue.current, {
       toValue: 0,
+      duration: 500,
+      easing: Easing.out(Easing.ease),
       useNativeDriver: false,
     }).start();
   };
@@ -48,29 +50,13 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
       ]}
     >
       <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          backgroundColor: "green",
-          borderRadius: 20,
-          height: 80,
-          padding: 15,
-          backgroundColor: contype === "info" ? "yellow" : "green",
-        }}
+        style={[
+          styles.container,
+          { backgroundColor: contype === "info" ? "yellow" : "green" },
+        ]}
       >
-        <View style={{ width: "15%" }}>
-          <View
-            style={{
-              zIndex: 1,
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              position: "absolute",
-              top: -25,
-              left: 10,
-            }}
-          >
+        <View style={{ width: "10%" }}>
+          <View style={styles.containerLeft}>
             <AntDesign
               style={{ zIndex: 1 }}
               name="question"
@@ -100,14 +86,23 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
           source={Bubble}
         />
         <View
-          style={{ display: "flex", flexDirection: "column", width: "60%" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "65%",
+          }}
         >
           <Text style={styles.title}>{title}</Text>
           <Text numberOfLines={2} style={styles.message}>
             {message}
           </Text>
         </View>
-        <AntDesign name="close" size={18} color="white" />
+        <AntDesign
+          name="close"
+          size={18}
+          color="white"
+          onPress={() => hideSnackbar()}
+        />
       </View>
     </Animated.View>
   );
@@ -122,6 +117,24 @@ const styles = StyleSheet.create({
   },
   message: {
     color: "white",
+  },
+  containerLeft: {
+    zIndex: 1,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    top: -15,
+    left: 10,
+  },
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "green",
+    borderRadius: 20,
+    height: 80,
+    padding: 10,
   },
   snackbar: {
     width: "100%",
