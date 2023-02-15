@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Animated,
   Image,
@@ -12,8 +12,9 @@ import { AntDesign } from "@expo/vector-icons";
 import Bubble from "./assets/bubbles.png";
 import Back from "./assets/back.png";
 
-const Snackbar = ({ title, message, contype, position, visible }) => {
+const Snackbar = ({ position, title, message, contype, duration = 3000 }) => {
   const animatedValue = useRef(new Animated.Value(0));
+  const [timeoutId, setTimeoutId] = useState(null);
 
   const showSnackbar = () => {
     Animated.timing(animatedValue.current, {
@@ -22,6 +23,16 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
       easing: Easing.in(Easing.ease),
       useNativeDriver: false,
     }).start();
+
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    const id = setTimeout(() => {
+      hideSnackbar();
+    }, duration);
+
+    setTimeoutId(id);
   };
 
   const hideSnackbar = () => {
@@ -50,7 +61,7 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
   };
 
   const getIcon = () => {
-    if (contype === "warning") return "warning";
+    if (contype === "warning") return "exclamation";
     else if (contype === "failure") return "close";
     else if (contype === "success") return "check";
     else if (contype === "help") return "question";
@@ -58,8 +69,16 @@ const Snackbar = ({ title, message, contype, position, visible }) => {
   };
 
   useEffect(() => {
-    visible ? showSnackbar() : hideSnackbar();
-  }, [visible]);
+    showSnackbar();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [timeoutId]);
 
   return (
     <Animated.View

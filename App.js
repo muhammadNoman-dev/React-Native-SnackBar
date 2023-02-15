@@ -8,13 +8,16 @@ export default function App() {
   return (
     <SafeAreaView style={styles.snackbar}>
       <View style={styles.snackbar}>
-        <Snackbar
-          visible={openSnackBar}
-          position="top"
-          title={"Congratulations"}
-          message="You have successfully read this message. Please continue working!"
-          contype={"success"}
-        />
+        {openSnackBar && (
+          <Snackbar
+            duration={5000}
+            position="bottom"
+            title={"Congratulations"}
+            message="You have successfully read this message. Please continue working!"
+            contype={"warning"}
+          />
+        )}
+
         <Button
           title="press me"
           onPress={() => setOpenSnackBar(!openSnackBar)}
