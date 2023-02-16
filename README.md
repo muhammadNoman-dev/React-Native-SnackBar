@@ -16,19 +16,18 @@ Below are the looks of various types of Snackbar
 
 ### Failure
 
-![failure](https://user-images.githubusercontent.com/81577537/219106396-6f78d826-eceb-4947-ad69-951e6ee12183.jpeg)
+<img src="https://user-images.githubusercontent.com/81577537/219106396-6f78d826-eceb-4947-ad69-951e6ee12183.jpeg" wight="800" height="800" />
+
 
 ### Success 
 
-![success](https://user-images.githubusercontent.com/81577537/219108595-295edeb7-5354-415b-b2e9-1b2f4975c1e2.jpeg)
-
-
+<img src="https://user-images.githubusercontent.com/81577537/219108595-295edeb7-5354-415b-b2e9-1b2f4975c1e2.jpeg" wight="800" height="800" />
 
 ### Help
-![help](https://user-images.githubusercontent.com/81577537/219108008-96ad6f23-d74c-4c1c-8d2c-5050725a6e61.jpeg)
 
+<img src="https://user-images.githubusercontent.com/81577537/219108008-96ad6f23-d74c-4c1c-8d2c-5050725a6e61.jpeg" wight="800" height="800" />
 
 ### Warning
 
-![warning](https://user-images.githubusercontent.com/81577537/219107783-4d1a95aa-dd79-4f0d-a817-b820ebc51238.jpeg)
+<img src="https://user-images.githubusercontent.com/81577537/219107783-4d1a95aa-dd79-4f0d-a817-b820ebc51238.jpeg" wight="800" height="800" />
 
